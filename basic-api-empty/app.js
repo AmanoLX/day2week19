@@ -1,0 +1,18 @@
+const express = require("express");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+
+//Router definition
+const indexRouter = require("./routes/index.route");
+
+require("./config/db.config")
+const app = express();
+
+app.use(logger("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+
+app.use("/", indexRouter);
+
+module.exports = app;
